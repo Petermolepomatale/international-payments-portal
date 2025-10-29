@@ -7,13 +7,12 @@ import {
   Typography,
   Box,
   Alert,
-  Link,
   InputAdornment,
   IconButton,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LoginFormData } from '../../types';
 import { validationRules } from '../../utils/validation';
 
@@ -102,10 +101,10 @@ const Login: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          <Paper 
-            elevation={24} 
-            sx={{ 
-              padding: 6, 
+          <Paper
+            elevation={24}
+            sx={{
+              padding: 6,
               width: '100%',
               borderRadius: 4,
               background: 'rgba(255, 255, 255, 0.95)',
@@ -139,9 +138,9 @@ const Login: React.FC = () => {
             </Box>
 
             {apiError && (
-              <Alert 
-                severity="error" 
-                sx={{ 
+              <Alert
+                severity="error"
+                sx={{
                   mb: 3,
                   borderRadius: 2,
                   '& .MuiAlert-icon': {
@@ -154,93 +153,94 @@ const Login: React.FC = () => {
             )}
 
             <Box component="form" onSubmit={handleSubmit} noValidate>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={formData.username}
-              onChange={handleChange}
-              error={!!errors.username}
-              helperText={errors.username}
-              disabled={loading}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              autoComplete="current-password"
-              value={formData.password}
-              onChange={handleChange}
-              error={!!errors.password}
-              helperText={errors.password}
-              disabled={loading}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ 
-                mt: 4, 
-                mb: 3,
-                py: 1.5,
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%)',
-                  transform: 'translateY(-1px)',
-                },
-                '&:disabled': {
-                  background: 'linear-gradient(135deg, #94a3b8 0%, #9ca3af 100%)',
-                },
-              }}
-              disabled={loading}
-              size="large"
-            >
-              {loading ? 'Signing In...' : 'Sign In Securely'}
-            </Button>
-            
-            {/* Security Notice */}
-            <Box 
-              sx={{ 
-                textAlign: 'center',
-                p: 2,
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                borderRadius: 2,
-                border: '1px solid rgba(59, 130, 246, 0.2)',
-              }}
-            >
-              <Typography variant="body2" color="primary" sx={{ fontWeight: 500 }}>
-                🔒 Secure Login • SSL Encrypted • Bank-Grade Security
-              </Typography>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                autoFocus
+                value={formData.username}
+                onChange={handleChange}
+                error={!!errors.username}
+                helperText={errors.username}
+                disabled={loading}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                autoComplete="current-password"
+                value={formData.password}
+                onChange={handleChange}
+                error={!!errors.password}
+                helperText={errors.password}
+                disabled={loading}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 4,
+                  mb: 3,
+                  py: 1.5,
+                  fontSize: '1.1rem',
+                  fontWeight: 600,
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%)',
+                    transform: 'translateY(-1px)',
+                  },
+                  '&:disabled': {
+                    background: 'linear-gradient(135deg, #94a3b8 0%, #9ca3af 100%)',
+                  },
+                }}
+                disabled={loading}
+                size="large"
+              >
+                {loading ? 'Signing In...' : 'Sign In Securely'}
+              </Button>
+
+              {/* Security Notice */}
+              <Box
+                sx={{
+                  textAlign: 'center',
+                  p: 2,
+                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                  borderRadius: 2,
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
+                }}
+              >
+                <Typography variant="body2" color="primary" sx={{ fontWeight: 500 }}>
+                  🔒 Secure Login • SSL Encrypted • Bank-Grade Security
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-        </Paper>
-      </Box>
-    </Container>
+          </Paper>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
-export default Login;
+      export default Login;
