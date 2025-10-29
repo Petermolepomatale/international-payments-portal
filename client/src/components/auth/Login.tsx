@@ -84,30 +84,76 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Container component="main" maxWidth="sm">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Paper elevation={3} sx={{ padding: 4, width: '100%' }}>
-          <Typography component="h1" variant="h4" align="center" gutterBottom>
-            Sign In
-          </Typography>
-          <Typography variant="body2" align="center" color="text.secondary" sx={{ mb: 3 }}>
-            International Payments Portal
-          </Typography>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        py: 4,
+      }}
+    >
+      <Container component="main" maxWidth="sm">
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Paper 
+            elevation={24} 
+            sx={{ 
+              padding: 6, 
+              width: '100%',
+              borderRadius: 4,
+              background: 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+            }}
+          >
+            {/* Logo and Header */}
+            <Box sx={{ textAlign: 'center', mb: 4 }}>
+              <Box
+                sx={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                  fontSize: '2rem',
+                }}
+              >
+                🌍
+              </Box>
+              <Typography component="h1" variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+                Welcome Back
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                Sign in to International Payments Portal
+              </Typography>
+            </Box>
 
-          {apiError && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {apiError}
-            </Alert>
-          )}
+            {apiError && (
+              <Alert 
+                severity="error" 
+                sx={{ 
+                  mb: 3,
+                  borderRadius: 2,
+                  '& .MuiAlert-icon': {
+                    fontSize: '1.25rem',
+                  },
+                }}
+              >
+                {apiError}
+              </Alert>
+            )}
 
-          <Box component="form" onSubmit={handleSubmit} noValidate>
+            <Box component="form" onSubmit={handleSubmit} noValidate>
             <TextField
               margin="normal"
               required
@@ -155,16 +201,40 @@ const Login: React.FC = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ 
+                mt: 4, 
+                mb: 3,
+                py: 1.5,
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%)',
+                  transform: 'translateY(-1px)',
+                },
+                '&:disabled': {
+                  background: 'linear-gradient(135deg, #94a3b8 0%, #9ca3af 100%)',
+                },
+              }}
               disabled={loading}
               size="large"
             >
-              {loading ? 'Signing In...' : 'Sign In'}
+              {loading ? 'Signing In...' : 'Sign In Securely'}
             </Button>
-            <Box textAlign="center">
-              <Link component={RouterLink} to="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+            
+            {/* Security Notice */}
+            <Box 
+              sx={{ 
+                textAlign: 'center',
+                p: 2,
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                borderRadius: 2,
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+              }}
+            >
+              <Typography variant="body2" color="primary" sx={{ fontWeight: 500 }}>
+                🔒 Secure Login • SSL Encrypted • Bank-Grade Security
+              </Typography>
             </Box>
           </Box>
         </Paper>

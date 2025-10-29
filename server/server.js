@@ -1,13 +1,25 @@
 const express = require('express');
+const https = require('https');
+const http = require('http');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/database');
 const securityMiddleware = require('./middleware/security');
+const { 
+  generalLimiter, 
+  speedLimiter, 
+  sanitizeInput, 
+  preventSQLInjection, 
+  requestSizeLimiter, 
+  suspiciousActivityDetector 
+} = require('./middleware/advancedSecurity');
+const { getSSLOptions, forceHTTPS, httpsSecurityHeaders } = require('./config/ssl');
 const { PORT, NODE_ENV } = require('./config/env');
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Import error handling middleware
 const globalErrorHandler = require('./middleware/errorHandler');
@@ -17,6 +29,22 @@ const app = express();
 
 // Connect to database
 connectDB();
+
+// Force HTTPS in production
+if (NODE_ENV === 'production') {
+  app.use(forceHTTPS);
+}
+
+// HTTPS security headers
+app.use(httpsSecurityHeaders);
+
+// Advanced security middleware
+app.use(requestSizeLimiter);
+app.use(suspiciousActivityDetector);
+app.use(generalLimiter);
+app.use(speedLimiter);
+app.use(sanitizeInput);
+app.use(preventSQLInjection);
 
 // Security middleware
 securityMiddleware(app);
@@ -48,6 +76,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/customer', customerRoutes);
 app.use('/api/employee', employeeRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Handle undefined routes
 app.all('*', (req, res, next) => {
@@ -60,10 +89,33 @@ app.all('*', (req, res, next) => {
 // Global error handling middleware
 app.use(globalErrorHandler);
 
-// Start server
-const server = app.listen(PORT, () => {
-  console.log(`🚀 Server running in ${NODE_ENV} mode on port ${PORT}`);
-});
+// Start server with HTTPS support
+const sslOptions = getSSLOptions();
+let server;
+
+if (sslOptions && NODE_ENV === 'production') {
+  // Production HTTPS server
+  server = https.createServer(sslOptions, app).listen(PORT, () => {
+    console.log(`🔒 HTTPS Server running in ${NODE_ENV} mode on port ${PORT}`);
+    console.log(`🌍 Access at: https://localhost:${PORT}`);
+  });
+} else if (sslOptions && NODE_ENV === 'development') {
+  // Development HTTPS server
+  server = https.createServer(sslOptions, app).listen(PORT, () => {
+    console.log(`🔒 Development HTTPS Server running on port ${PORT}`);
+    console.log(`🌍 Access at: https://localhost:${PORT}`);
+    console.log(`⚠️  Using self-signed certificate - browser will show security warning`);
+  });
+} else {
+  // Fallback HTTP server
+  server = http.createServer(app).listen(PORT, () => {
+    console.log(`🚀 HTTP Server running in ${NODE_ENV} mode on port ${PORT}`);
+    console.log(`🌍 Access at: http://localhost:${PORT}`);
+    if (NODE_ENV === 'production') {
+      console.log(`⚠️  WARNING: Running HTTP in production is not secure!`);
+    }
+  });
+}
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {

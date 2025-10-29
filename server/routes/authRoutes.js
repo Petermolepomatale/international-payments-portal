@@ -8,11 +8,13 @@ const {
 } = require('../controllers/authController');
 const { protect } = require('../middleware/auth');
 const { validateRegistration, handleValidationErrors } = require('../middleware/validation');
+const { loginLimiter } = require('../middleware/advancedSecurity');
 
 const router = express.Router();
 
-router.post('/register', validateRegistration, handleValidationErrors, register);
-router.post('/login', login);
+// Registration disabled - users created by admin only
+// router.post('/register', validateRegistration, handleValidationErrors, register);
+router.post('/login', loginLimiter, login);
 router.post('/logout', logout);
 router.get('/me', protect, getMe);
 router.patch('/update-password', protect, updatePassword);
