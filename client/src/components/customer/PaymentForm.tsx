@@ -232,7 +232,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess, onCancel }) => {
         </Button>
       </Box>
 
-      <Typography variant="body2" sx={{ color: '#ffffff', mt: 2 }}>
+      <Typography variant="body2" sx={{ color: '#64748b', mt: 2 }}>
         Note: All payments are subject to verification and may take 1-2 business days to process.
       </Typography>
     </Box>

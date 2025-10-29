@@ -154,10 +154,19 @@ const CustomerDashboard: React.FC = () => {
             {showPaymentForm && (
               <Box
                 sx={{
-                  background: 'rgba(102, 126, 234, 0.02)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   borderRadius: 3,
                   p: 3,
-                  border: '1px solid rgba(102, 126, 234, 0.1)',
+                  border: '1px solid rgba(102, 126, 234, 0.2)',
+                  '& .MuiInputLabel-root': {
+                    color: '#1e293b !important',
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    color: '#1e293b !important',
+                  },
+                  '& .MuiFormHelperText-root': {
+                    color: '#64748b !important',
+                  },
                 }}
               >
                 <PaymentForm

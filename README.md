@@ -244,6 +244,56 @@ If you encounter any issues:
 4. Check that all dependencies are installed
 5. Review the API endpoints and test credentials
 
+## 📸 Screenshots
+
+### Login Page
+![Login Page](docs/screenshots/login/01-login-page.png)
+*Beautiful gradient background with security indicators and professional design*
+
+### Customer Dashboard
+![Customer Dashboard](docs/screenshots/customer-dashboard/01-welcome-hero.png)
+*Hero section with personalized welcome message and security indicators*
+
+![Payment Form](docs/screenshots/customer-dashboard/02-payment-form.png)
+*International payment creation form with validation and South African examples*
+
+![Transaction History](docs/screenshots/customer-dashboard/03-transaction-history.png)
+*Complete transaction history with status tracking and pagination*
+
+### Employee Dashboard
+![Employee Dashboard](docs/screenshots/employee-dashboard/01-dashboard-stats.png)
+*Statistics dashboard with real-time transaction metrics*
+
+![Pending Transactions](docs/screenshots/employee-dashboard/02-pending-transactions.png)
+*Pending transactions management with verification and SWIFT submission*
+
+![Bulk Operations](docs/screenshots/employee-dashboard/05-bulk-operations.png)
+*Bulk transaction processing for efficient workflow management*
+
+### Security Features
+![Security Headers](docs/screenshots/security/01-browser-security-headers.png)
+*Browser security headers demonstrating bank-grade protection*
+
+![Rate Limiting](docs/screenshots/security/02-rate-limiting.png)
+*Rate limiting protection against brute force attacks*
+
+### GitHub Repository
+![Repository Overview](docs/screenshots/github/01-repository-overview.png)
+*Complete codebase with professional structure and documentation*
+
+![CircleCI Pipeline](docs/screenshots/github/03-circleci-config.png)
+*Automated CI/CD pipeline with security scanning and quality checks*
+
+## 🎬 Video Demonstration
+
+For a complete walkthrough of all features, security measures, and code quality, watch the demonstration video showing:
+
+- **Login Security**: Beautiful UI with rate limiting and validation
+- **Customer Portal**: Payment creation with South African examples
+- **Employee Portal**: Transaction verification and SWIFT submission
+- **Security Features**: Headers, rate limiting, input validation
+- **Code Quality**: GitHub repository, CircleCI, SonarQube integration
+
 ## 🎯 Future Enhancements
 
 - [ ] Real SWIFT API integration
