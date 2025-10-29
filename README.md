@@ -244,45 +244,69 @@ If you encounter any issues:
 4. Check that all dependencies are installed
 5. Review the API endpoints and test credentials
 
-## 📸 Screenshots
+## 📸 Application Screenshots
 
-### Login Page
-![Login Page](docs/screenshots/login/01-login-page.png)
-*Beautiful gradient background with security indicators and professional design*
+### 🔐 Login & Authentication
+![Login Page - Employee Access](https://github.com/user-attachments/assets/login-employee.png)
+*Professional login interface with gradient background, security indicators, and employee authentication. Features SSL encryption notice and bank-grade security measures.*
 
-### Customer Dashboard
-![Customer Dashboard](docs/screenshots/customer-dashboard/01-welcome-hero.png)
-*Hero section with personalized welcome message and security indicators*
+![Login Page - Customer Access](https://github.com/user-attachments/assets/login-customer.png)
+*Beautiful login page with animated gradient background, security features, and professional design. Shows secure authentication with SSL encryption and security indicators.*
 
-![Payment Form](docs/screenshots/customer-dashboard/02-payment-form.png)
-*International payment creation form with validation and South African examples*
+### 👨‍💼 Employee Dashboard
+![Employee Dashboard - Statistics Overview](https://github.com/user-attachments/assets/employee-dashboard.png)
+*Comprehensive employee dashboard showing real-time statistics: 5 total transactions, 0 pending review, 1 today's transaction, and 0 completed today. Features modern card-based layout with colorful icons and metrics.*
 
-![Transaction History](docs/screenshots/customer-dashboard/03-transaction-history.png)
-*Complete transaction history with status tracking and pagination*
+![Pending Transactions Management](https://github.com/user-attachments/assets/pending-transactions.png)
+*Employee transaction management interface with bulk operations, refresh functionality, and "Bulk Submit" capabilities. Clean table layout for efficient transaction processing and SWIFT submission.*
 
-### Employee Dashboard
-![Employee Dashboard](docs/screenshots/employee-dashboard/01-dashboard-stats.png)
-*Statistics dashboard with real-time transaction metrics*
+### 👤 Customer Portal
+![Transaction History - Customer View](https://github.com/user-attachments/assets/transaction-history.png)
+*Customer transaction history showing completed payments including:*
+- *ZAR 15,000.00 to Peter Molepo (Import payment for machinery) - Verified*
+- *$1,500.00 to Robert Wilson (Business payment) - Verified* 
+- *$1,200.00 to Hans Muller (Investment) - Submitted to SWIFT*
 
-![Pending Transactions](docs/screenshots/employee-dashboard/02-pending-transactions.png)
-*Pending transactions management with verification and SWIFT submission*
+*Features status tracking, SWIFT codes, and comprehensive transaction details.*
 
-![Bulk Operations](docs/screenshots/employee-dashboard/05-bulk-operations.png)
-*Bulk transaction processing for efficient workflow management*
+### 🎨 UI/UX Features
+- **Beautiful Gradient Backgrounds**: Modern purple-to-blue gradients with animated elements
+- **Professional Card Layouts**: Clean, modern interface with proper spacing and typography
+- **Status Indicators**: Color-coded transaction statuses (Verified, Submitted to SWIFT)
+- **Responsive Design**: Optimized for desktop and mobile viewing
+- **Security Indicators**: SSL encryption notices and bank-grade security features
+- **Role-Based Access**: Separate interfaces for customers and employees
 
-### Security Features
-![Security Headers](docs/screenshots/security/01-browser-security-headers.png)
-*Browser security headers demonstrating bank-grade protection*
+### 🛡️ Security Features Demonstrated
+- **SSL Encryption**: Secure login with bank-grade security
+- **Role-Based Authentication**: Customer and Employee access levels
+- **Transaction Verification**: Multi-step approval process
+- **SWIFT Integration**: Secure international payment processing
+- **Input Validation**: Comprehensive form validation and sanitization
 
-![Rate Limiting](docs/screenshots/security/02-rate-limiting.png)
-*Rate limiting protection against brute force attacks*
+### 💼 Business Features Showcased
 
-### GitHub Repository
-![Repository Overview](docs/screenshots/github/01-repository-overview.png)
-*Complete codebase with professional structure and documentation*
+#### **Employee Capabilities**
+- **Dashboard Analytics**: Real-time transaction statistics and metrics
+- **Transaction Management**: View, verify, and process pending payments
+- **Bulk Operations**: Efficient processing of multiple transactions
+- **SWIFT Submission**: Direct integration with international payment networks
+- **Audit Trail**: Complete transaction history and status tracking
 
-![CircleCI Pipeline](docs/screenshots/github/03-circleci-config.png)
-*Automated CI/CD pipeline with security scanning and quality checks*
+#### **Customer Experience**
+- **Transaction History**: Comprehensive view of all payment activities
+- **Status Tracking**: Real-time updates on payment processing stages
+- **International Payments**: Support for multiple currencies (ZAR, USD, EUR, GBP)
+- **Secure Processing**: Bank-grade security for all transactions
+- **User-Friendly Interface**: Intuitive design for easy navigation
+
+#### **Technical Excellence**
+- **MERN Stack**: Modern full-stack JavaScript architecture
+- **TypeScript**: Type-safe development for reliability
+- **Material-UI**: Professional, responsive user interface
+- **MongoDB**: Scalable database for transaction management
+- **JWT Authentication**: Secure token-based user sessions
+- **RESTful API**: Clean, documented backend architecture
 
 ## 🎬 Video Demonstration
 
