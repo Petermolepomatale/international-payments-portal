@@ -52,7 +52,7 @@ const EmployeeDashboard: React.FC = () => {
       <CardContent>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box>
-            <Typography color="textSecondary" gutterBottom variant="overline">
+            <Typography sx={{ color: '#ffffff' }} gutterBottom variant="overline">
               {title}
             </Typography>
             <Typography variant="h4" component="div">
@@ -72,7 +72,7 @@ const EmployeeDashboard: React.FC = () => {
       <Typography variant="h4" gutterBottom>
         Employee Dashboard
       </Typography>
-      <Typography variant="body1" color="text.secondary" gutterBottom>
+      <Typography variant="body1" sx={{ color: '#ffffff' }} gutterBottom>
         Welcome, {user?.fullName}! Manage international payments and verify transactions.
       </Typography>
 

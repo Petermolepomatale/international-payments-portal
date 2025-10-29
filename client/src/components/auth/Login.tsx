@@ -87,6 +87,10 @@ const Login: React.FC = () => {
       sx={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        backgroundImage: 'url(/images/background-pattern.svg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -132,7 +136,7 @@ const Login: React.FC = () => {
               <Typography component="h1" variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
                 Welcome Back
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body1" sx={{ color: '#64748b' }}>
                 Sign in to International Payments Portal
               </Typography>
             </Box>

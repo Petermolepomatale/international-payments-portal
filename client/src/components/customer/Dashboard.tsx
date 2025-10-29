@@ -127,7 +127,7 @@ const CustomerDashboard: React.FC = () => {
                 <Typography variant="h4" sx={{ fontWeight: 600, mb: 1 }}>
                   💸 International Payments
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1" sx={{ color: '#64748b' }}>
                   Send money worldwide with competitive rates and fast processing
                 </Typography>
               </Box>

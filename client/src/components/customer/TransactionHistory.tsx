@@ -110,10 +110,10 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ refreshTrigger 
                     <Typography variant="body2" fontWeight="medium">
                       {transaction.payeeName}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" sx={{ color: '#ffffff' }}>
                       {transaction.payeeBank}
                     </Typography>
-                    <Typography variant="caption" color="text.secondary">
+                    <Typography variant="caption" sx={{ color: '#ffffff' }}>
                       {transaction.payeeAccount}
                     </Typography>
                   </Box>
@@ -145,7 +145,7 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ refreshTrigger 
 
       {totalPages > 1 && (
         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: '#ffffff' }}>
             Total: {totalCount} transactions
           </Typography>
           <Pagination

@@ -40,12 +40,12 @@ const theme = createTheme({
       dark: '#b91c1c',
     },
     background: {
-      default: '#f8fafc',
-      paper: '#ffffff',
+      default: 'rgba(102, 126, 234, 0.1)',
+      paper: 'rgba(255, 255, 255, 0.95)',
     },
     text: {
       primary: '#1e293b',
-      secondary: '#64748b',
+      secondary: '#ffffff',
     },
   },
   typography: {

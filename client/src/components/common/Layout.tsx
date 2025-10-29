@@ -62,7 +62,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, minHeight: '100vh', backgroundColor: theme.palette.background.default }}>
+    <Box 
+      sx={{ 
+        flexGrow: 1, 
+        minHeight: '100vh', 
+        backgroundColor: theme.palette.background.default,
+        backgroundImage: 'linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%), url(/images/background-pattern.svg)',
+        backgroundSize: 'cover, cover',
+        backgroundPosition: 'center, center',
+        backgroundRepeat: 'no-repeat, no-repeat',
+        backgroundAttachment: 'fixed, fixed',
+      }}
+    >
       <AppBar position="static" elevation={0}>
         <Toolbar sx={{ py: 1 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
