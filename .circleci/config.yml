@@ -1,185 +1,31 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/reference/configuration-reference
 version: 2.1
 
-orbs:
-  node: circleci/node@5.1.0
-  sonarcloud: sonarsource/sonarcloud@2.0.0
-
-executors:
-  node-executor:
-    docker:
-      - image: cimg/node:18.17
-      - image: cimg/mongo:6.0
-    working_directory: ~/project
-
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/guides/orchestrate/jobs-steps/#jobs-overview & https://circleci.com/docs/reference/configuration-reference/#jobs
 jobs:
-  # Install dependencies
-  install-dependencies:
-    executor: node-executor
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "server/package-lock.json" }}-{{ checksum "client/package-lock.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install Server Dependencies
-          command: |
-            cd server
-            npm ci
-      - run:
-          name: Install Client Dependencies
-          command: |
-            cd client
-            npm ci
-      - save_cache:
-          paths:
-            - server/node_modules
-            - client/node_modules
-          key: v1-dependencies-{{ checksum "server/package-lock.json" }}-{{ checksum "client/package-lock.json" }}
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - server/node_modules
-            - client/node_modules
+  say-hello:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/guides/execution-managed/executor-intro/ & https://circleci.com/docs/reference/configuration-reference/#executor-job
+    docker:
+      # Specify the version you desire here
+      # See: https://circleci.com/developer/images/image/cimg/base
+      - image: cimg/base:current
 
-  # Security audit
-  security-audit:
-    executor: node-executor
+    # Add steps to the job
+    # See: https://circleci.com/docs/guides/orchestrate/jobs-steps/#steps-overview & https://circleci.com/docs/reference/configuration-reference/#steps
     steps:
+      # Checkout the code as the first step.
       - checkout
-      - attach_workspace:
-          at: ~/project
       - run:
-          name: Security Audit - Server
-          command: |
-            cd server
-            npm audit --audit-level moderate
-      - run:
-          name: Security Audit - Client
-          command: |
-            cd client
-            npm audit --audit-level moderate
+          name: "Say hello"
+          command: "echo Hello, World!"
 
-  # Lint and code quality
-  lint-and-quality:
-    executor: node-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: ESLint - Server
-          command: |
-            cd server
-            npx eslint . --ext .js --format junit --output-file ~/project/test-results/eslint/server-results.xml || true
-      - run:
-          name: ESLint - Client
-          command: |
-            cd client
-            npx eslint src --ext .ts,.tsx --format junit --output-file ~/project/test-results/eslint/client-results.xml || true
-      - store_test_results:
-          path: ~/project/test-results
-
-  # Run tests
-  test-backend:
-    executor: node-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: Wait for MongoDB
-          command: dockerize -wait tcp://localhost:27017 -timeout 1m
-      - run:
-          name: Run Backend Tests
-          command: |
-            cd server
-            npm test -- --coverage --watchAll=false --testResultsProcessor=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ~/project/test-results/jest
-            JEST_JUNIT_OUTPUT_NAME: backend-results.xml
-      - store_test_results:
-          path: ~/project/test-results
-      - store_artifacts:
-          path: server/coverage
-          destination: backend-coverage
-
-  test-frontend:
-    executor: node-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: Run Frontend Tests
-          command: |
-            cd client
-            npm test -- --coverage --watchAll=false --testResultsProcessor=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ~/project/test-results/jest
-            JEST_JUNIT_OUTPUT_NAME: frontend-results.xml
-      - store_test_results:
-          path: ~/project/test-results
-      - store_artifacts:
-          path: client/coverage
-          destination: frontend-coverage
-
-  # SonarQube analysis
-  sonarcloud-scan:
-    executor: node-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - sonarcloud/scan:
-          cache_version: 1
-
-  # Build applications
-  build:
-    executor: node-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: Build Frontend
-          command: |
-            cd client
-            npm run build
-      - run:
-          name: Test Backend Startup
-          command: |
-            cd server
-            timeout 30s npm start || true
-      - store_artifacts:
-          path: client/build
-          destination: frontend-build
-
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/guides/orchestrate/workflows/ & https://circleci.com/docs/reference/configuration-reference/#workflows
 workflows:
-  version: 2
-  ci-pipeline:
+  say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - install-dependencies
-      - security-audit:
-          requires:
-            - install-dependencies
-      - lint-and-quality:
-          requires:
-            - install-dependencies
-      - test-backend:
-          requires:
-            - install-dependencies
-      - test-frontend:
-          requires:
-            - install-dependencies
-      - sonarcloud-scan:
-          requires:
-            - test-backend
-            - test-frontend
-          context: SonarCloud
-      - build:
-          requires:
-            - security-audit
-            - lint-and-quality
-            - test-backend
-            - test-frontend
+      - say-hello
