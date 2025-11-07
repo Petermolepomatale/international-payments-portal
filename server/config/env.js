@@ -1,7 +1,14 @@
 const dotenv = require('dotenv');
+const path = require('path');
 
-// Load env file based on environment
-dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
+// Load env file - try specific environment first, then fall back to .env
+const envFile = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
+dotenv.config({ path: path.join(__dirname, '..', envFile) });
+
+// If specific env file doesn't exist, load default .env
+if (!process.env.JWT_SECRET) {
+  dotenv.config({ path: path.join(__dirname, '..', '.env') });
+}
 
 module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',
