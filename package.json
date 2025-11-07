@@ -1,0 +1,29 @@
+{
+  "name": "international-payments-portal",
+  "version": "1.0.0",
+  "description": "A complete, production-ready MERN stack application for international payments processing with SWIFT integration.",
+  "private": true,
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  },
+  "keywords": [
+    "mern",
+    "payments",
+    "swift",
+    "international-payments",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express"
+  ],
+  "author": "Peter Molepomatale",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Petermolepomatale/international-payments-portal.git"
+  }
+}

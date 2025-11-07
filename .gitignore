@@ -71,10 +71,11 @@ jspm_packages/
 ehthumbs.db
 Thumbs.db
 
-# Test files
-test-auth.js
-package.json
-package-lock.json
+# SSL certificates (if generated locally)
+server/certs/
+*.pem
+*.key
+*.crt
 
 # Temporary files
 *.tmp
